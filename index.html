@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <title>Any site</title>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            gap: 25px;
+
+            margin: 50px 400px 0 400px;
+            background-color: orange;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+            background-image: linear-gradient(to right, blue, red, blue);
+        }
+
+        .cityInput {
+            height: 30px;
+            font-size: 20px;
+
+            background-image: linear-gradient(to right, red, yellow, orangered);
+
+        }
+
+        .cityInputt {
+            height: 30px;
+            font-size: 20px;
+
+
+        }
+
+
+
+        }
+    </style>
+    <style>
+        .vvv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            gap: 25px;
+
+            margin: 50px 400px 0 400px;
+            background-image: linear-gradient(to right, red, yellow, orangered);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const apiKey = '690d9e294b6ff391c8fed39840850187';
+
+        async function getweather() {
+            const city = document.getElementById("cityName").value;
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=ru`;
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                console.log("ошибка")
+            } else {
+                const data = await response.json();
+                console.log("Температура в воздухе", city, data.main.temp - 273);
+                console.log(data);
+
+                document.getElementById("temp").innerHTML = data.main.temp - 273;
+                document.getElementById("cityWeather").innerHTML = `Погода в ${city}`;
+                document.getElementById("description").innerHTML = data.weather[0].description;
+            }
+        }
+
+    </script>
+
+    <div class="container">
+        <h1 id="cityWeather">Погода</h1>
+        <div><input type="text" class="cityInput" size="25" id="cityName">
+            <button id="submit" class="cityInputt" onclick="getweather()">Ввести</button>
+        </div>
+
+        <h2> Погода сегодня:</h2>
+        <h2 id="temp">Загрузка...</h2>
+        <h3 id="description"></h3>
+    </div>
+    <div class="vvv">
+        <h2 id="ggg"> Спасибо за просмотр сайта❤</h2>
+    </div>
+</body>
+
+</html>
